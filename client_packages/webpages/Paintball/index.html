@@ -1,0 +1,169 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
+
+<div class="container">
+    <!-- Main Menu -->
+    <div class="menu" id="main-menu">
+        <div class="header">
+            <h1>Paintball</h1><span><button type="button" id="close-menu">X</button></span>
+        </div>
+        <div class="body" id="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Joinable</th>
+                        <th>Players</th>
+                        <th>Map</th>
+                        <th>Mode</th>
+                        <th>View Lobby</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Game Instances -->
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <button type="button" id="create">Create Lobby</button>
+        </div>
+    </div>
+
+
+    <!-- Create Menu -->
+    <div class="menu hidden" id="create-menu">
+        <div class="header">
+            <h1>Create Lobby</h1>
+        </div>
+        <div class="body" hidden>
+            <form>
+                <label for="map">Map</label>
+                <select name="map" id="map">
+                    <option value="0">Sandy Apartments</option>
+                    <option value="1">Bank Breach</option>
+                    <option value="2">Scrapyard</option>
+                </select>
+                <label for="mode">Mode</label>
+                <select name="mode" id="mode">
+                    <option value="0">2v2</option>
+                    <option value="1">2v2v2v2</option>
+                    <option value="2">8v8</option>
+                </select>
+                <label for="max">Max Players</label>
+                <select name="max" id="max">
+                    <option value="0">2</option>
+                    <option value="1">4</option>
+                    <option value="2">8</option>
+                    <option value="3">16</option>
+                </select>
+                <label for="score">Score</label>
+                <input id="score" type="number" name="score" min="0" max="1000" value="0">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <button type="button" id="create-lobby">Create</button>
+            </form>
+        </div>
+        <div class="footer">
+            <button type="button" id="close-create">Return to menu</button>
+        </div>
+
+
+    <!-- View Session -->
+    <div class="menu hidden" id="view-menu">
+        <div class="header">
+            <h1>Create Lobby</h1>
+        </div>
+        <div class="body">
+            
+        </div>
+        <div class="footer">
+            <button type="button" id="close-create">Return to menu</button>
+        </div>
+</div>
+
+<script>
+    let menuHidden = false;
+
+
+    window.addEventListener("DOMContentLoaded", (event) => {
+        document.querySelectorAll("#session").forEach(session => {
+            session.addEventListener("click", (e) => {
+                showSession(e.target.value);
+            });
+        });
+    });
+
+    document.getElementById("create").addEventListener("click", () => {
+        hideMain();
+        showCreate();
+    });
+
+    document.getElementById("close-menu").addEventListener("click", () => {
+        mp.trigger("Paintball:CloseMenu");
+    });
+
+    document.getElementById("close-create").addEventListener("click", () => {
+        hideCreate();
+        showMain();
+    });
+
+    document.getElementById("create-lobby").addEventListener("click", () => {
+        createGame();
+        hideCreate();
+        showMain();
+    });
+
+    const showSession = (sessionId) => {
+        mp.trigger("Paintball:ShowSession", sessionId);
+    }
+
+    const createGame = () => {
+        let map = document.getElementById("map").value;
+        let mode = document.getElementById("mode").value;
+        let max = document.getElementById("max").value;
+        let score = document.getElementById("score").value;
+        let password = document.getElementById("password").value;
+
+        mp.trigger("debug", `Map: ${map} Mode: ${mode} Max: ${max} Score: ${score} Password: ${password}`);
+
+        mp.trigger("Paintball:CreateGame", map, mode, max, score, password);
+    }
+
+    const hideMain = () => document.querySelector("#main-menu").classList.add("hidden");
+    const showMain = () => document.querySelector("#main-menu").classList.remove("hidden");
+
+    const hideCreate = () => document.querySelector("#create-menu").classList.add("hidden");
+    const showCreate = () => document.querySelector("#create-menu").classList.remove("hidden");
+
+    const populateGames = (games) => {
+        let tbody = document.querySelector("#main-menu table tbody");
+        mp.trigger("debug", JSON.stringify(games["Instance-0"]))
+
+
+        if (Object.keys(games).length === 0) {
+            tbody.insertAdjacentElement("beforeend", "<tr><td colspan='5'>No games found</td></tr>");
+            mp.gui.chat.push("No games found");
+        } else {
+            let gameInstances = [];
+
+            for (let index = 0; index < Object.keys(games).length; index++) {
+                const game = games[`Instance-${index}`];
+
+                gameInstances.push(
+                    `<tr>
+                        <td><i class="fas fa-circle" style="color:${4 != game["Max-Players"] ? "green" : "red"}"></i></td>
+                        <td>4 / ${game["Max-Players"]}</td>
+                        <td>${game["Map-Name"]}</td>
+                        <td>${game["Mode-Type"]}</td>
+                        <td><button type="button" id="Instance-${index}" value="${index}">View</button></td>
+                    </tr>`
+                );
+            }
+
+            gameInstances.forEach(instance => {
+                tbody.insertAdjacentHTML("beforeend", instance);
+            });
+        }
+    }
+</script>

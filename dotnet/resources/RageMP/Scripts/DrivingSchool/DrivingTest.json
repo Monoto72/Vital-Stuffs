@@ -1,0 +1,134 @@
+﻿{
+  "Car": {
+    "name": "Driving Test",
+    "Cost": 1500,
+    "License": "car",
+    "VehicleModel": "blista",
+    "MaxSpeedingOffences": 3,
+    "MinVehicleHealth": 500,
+    "Checkpoints": [
+      {
+        "Position": {
+          "x" : 1164.9928,
+          "y": -478.19186,
+          "z": 65.714226
+        },
+        "Heading": { 
+          "x": 1142.3911, 
+          "y": -759.25366, 
+          "z": 57.618675
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "Now we've started, let's exit the DMV to the right and follow the road down. Remember the Speed limit is 80kmh."
+      },
+      {
+        "Position": {
+          "x" : 1196.1951,
+          "y": -742.4635,
+          "z": 58.367054
+        },
+        "Heading": {
+          "x": 1166.0696, "y": -756.27924, "z": 57.65612
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "Proceed to slow down at the lights, making a right hand turn, once the lights are green."
+      },
+      {
+        "Position": {
+          "x" : 987.2226,
+          "y": -675.63586,
+          "z": 57.226845
+        },
+        "Heading": {
+          "x": 981.50494, "y": -666.5567, "z": 57.287167
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "Remember to slow/ stop if presented on the lane. Now proceed by following the road onwards."
+      },
+      {
+        "Position": {
+          "x" : 927.6399,
+          "y": -601.9343,
+          "z": 57.249527
+        },
+        "Heading": {
+          "x": 936.70105, "y": -584.42053, "z": 57.58283
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "Turn right, remember to slow down to ensure you don't swerve into the oncoming lane."
+      },
+      {
+        "Position": {
+          "x" : 1053.3251,
+          "y": -524.9812,
+          "z": 61.602005
+        },
+        "Heading": {
+          "x": 1073.2004, "y": -494.54123, "z": 62.984463
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "Turn left, following the road towards the bridge."
+      },
+      {
+        "Position": {
+          "x" : 1087.7194,
+          "y": -406.39853,
+          "z": 66.89918
+        },
+        "Heading": {
+          "x": 1073.1003, "y": -364.8592, "z": 66.85042
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "Stop! Check all lanes to ensure there is no oncoming traffic, once done proceed to drive over the bridge ahead."
+      },
+      {
+        "Position": {
+          "x" : 979.43854,
+          "y": -293.62735,
+          "z": 66.73396
+        },
+        "Heading": {
+          "x": 978.7762, "y": -271.21075, "z": 66.72885
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "Make a right, on your left you will find DCC taxi lot, if in need use the taxi app on your phone."
+      },
+      {
+        "Position": {
+          "x" : 1012.1461,
+          "y": -217.76907,
+          "z": 69.92378
+        },
+        "Heading": {
+          "x": 1052.7482, "y": -224.58182, "z": 69.81872
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "Take a right, following the road around the bend to the Gas Station."
+      },
+      {
+        "Position": {
+          "x" : 1205.3313,
+          "y": -353.64548,
+          "z": 68.84981
+        },
+        "Heading": {
+          "x": 1196.7472, "y": -386.2705, "z": 68.10941
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "Proceed down the road until you reach the DMV again."
+      },
+      {
+        "Position": {
+          "x" : 1177.7747,
+          "y": -467.99472,
+          "z": 65.910995
+        },
+        "Heading": {
+          "x": 1180.8866, "y": -457.50632, "z": 66.40695
+        },
+        "MaxSpeed": 80,
+        "CheckpointInfo": "You have reached your last destination, let's see if you have passed."
+      }
+    ]
+  }
+}
